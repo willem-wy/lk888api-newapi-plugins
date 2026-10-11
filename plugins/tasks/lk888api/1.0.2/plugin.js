@@ -5,12 +5,12 @@
  * Calls public endpoints only:
  *   POST /v1/video/generations  +  GET /v1/videos/tasks/:id
  *   POST /v1/images/create      +  GET /v1/images/tasks/:id
- *   GET  /v1/skills/balance      (proxy — balance query)
- *   GET  /v1/skills/usage        (proxy — usage query)
- *   GET  /v1/skills/models       (proxy — model list)
- *   GET  /v1/skills/models/:name (proxy — model detail)
- *   GET  /v1/skills/models/:name/pricing (proxy — model pricing)
  * Base URL and API key come from the Task Plugin channel (ctx.baseUrl / ctx.apiKey).
+ *
+ * Balance / usage / model pricing are NOT proxied here: NewAPI task-plugin
+ * routes only support submit/query/dynamic (task-centric) types, so callers
+ * should query these directly on the upstream with their own key, e.g.
+ *   curl -H "Authorization: Bearer $KEY" https://ai.jiasuapi.com/v1/skills/balance
  */
 export const meta = {
   apiVersion: 1,
@@ -18,8 +18,8 @@ export const meta = {
   name: "lk888",
   icon: "text:lk888",
   description: {
-    en: "lk888 image & video media platform with balance, usage, models & pricing queries. Official site: https://ai.jiasuapi.com/",
-    zh: "lk888中转平台（图片、视频、余额、消费、模型查询与定价）。官方地址：https://ai.jiasuapi.com/",
+    en: "lk888 image & video media platform (佳速API). Official site: https://ai.jiasuapi.com/",
+    zh: "lk888中转平台（图片、视频生成）。官方地址：https://ai.jiasuapi.com/",
   },
   version: "1.0.2",
   author: { name: "lk888", url: "https://ai.jiasuapi.com/" },
@@ -106,36 +106,6 @@ export const meta = {
       path: "/lk888api/v1/images/tasks/:task_id",
       type: "query",
       render: "taskStatusJsapi",
-    },
-    {
-      method: "GET",
-      path: "/lk888api/v1/skills/balance",
-      type: "proxy",
-      upstreamPath: "/v1/skills/balance",
-    },
-    {
-      method: "GET",
-      path: "/lk888api/v1/skills/usage",
-      type: "proxy",
-      upstreamPath: "/v1/skills/usage",
-    },
-    {
-      method: "GET",
-      path: "/lk888api/v1/skills/models",
-      type: "proxy",
-      upstreamPath: "/v1/skills/models",
-    },
-    {
-      method: "GET",
-      path: "/lk888api/v1/skills/models/:model_name",
-      type: "proxy",
-      upstreamPath: "/v1/skills/models/:model_name",
-    },
-    {
-      method: "GET",
-      path: "/lk888api/v1/skills/models/:model_name/pricing",
-      type: "proxy",
-      upstreamPath: "/v1/skills/models/:model_name/pricing",
     },
   ],
 };
@@ -558,30 +528,6 @@ export function buildQueryRequest(ctx) {
     method: "GET",
     headers: authHeaders(ctx.apiKey),
   };
-}
-
-export function buildProxyRequest(ctx) {
-  const base = channelBaseUrl(ctx);
-  const route = ctx.route || {};
-  let upstreamPath = route.upstreamPath || "";
-  const params = ctx.params || {};
-  for (const key of Object.keys(params)) {
-    upstreamPath = upstreamPath.replace(":" + key, encodeURIComponent(params[key]));
-  }
-  const query = ctx.query || {};
-  const qs = Object.keys(query)
-    .filter(function (k) { return query[k] !== undefined && query[k] !== null && query[k] !== ""; })
-    .map(function (k) { return encodeURIComponent(k) + "=" + encodeURIComponent(query[k]); })
-    .join("&");
-  return {
-    url: base + upstreamPath + (qs ? "?" + qs : ""),
-    method: "GET",
-    headers: authHeaders(ctx.apiKey),
-  };
-}
-
-export function parseProxyResponse(_ctx, resp) {
-  return resp.body;
 }
 
 /** Unwrap TaskDto {code,data} or flat OpenAI-style poll payloads. */

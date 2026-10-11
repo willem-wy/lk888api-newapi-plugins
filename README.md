@@ -5,7 +5,7 @@
 - 官方地址：https://ai.jiasuapi.com/
 - 插件 key：`lk888api`
 - 当前版本：`1.0.2`
-- 描述：lk888中转平台（图片、视频中转平台）。官方地址：https://ai.jiasuapi.com/
+- 描述：lk888中转平台（图片、视频生成）。官方地址：https://ai.jiasuapi.com/
 - 市场源 `index.json`（raw）：
 
 ```text
@@ -73,6 +73,21 @@ curl -sS "https://ai.jiasuapi.com/v1/models" \
 JIASU_API_KEY=sk-... node scripts/sync-models.mjs --version 1.0.2 \
   --extra-models-file scripts/db-models.snapshot.txt \
   --include-pricing
+```
+
+## 余额 / 消费 / 模型定价查询
+
+这些是佳速的信息型接口，**不经插件转发**：NewAPI 任务插件的 `meta.routes` 只支持 `submit` / `query` / `dynamic`（均为任务型路由），没有通用代理类型，声明 `type: "proxy"` 会在安装时被 lint 拒绝。请直接用你的佳速 Key 调用：
+
+```bash
+# 余额
+curl -sS "https://ai.jiasuapi.com/v1/skills/balance" -H "Authorization: Bearer $JIASU_API_KEY"
+# 消费
+curl -sS "https://ai.jiasuapi.com/v1/skills/usage" -H "Authorization: Bearer $JIASU_API_KEY"
+# 模型列表 / 单模型详情 / 定价
+curl -sS "https://ai.jiasuapi.com/v1/skills/models" -H "Authorization: Bearer $JIASU_API_KEY"
+curl -sS "https://ai.jiasuapi.com/v1/skills/models/<model_name>" -H "Authorization: Bearer $JIASU_API_KEY"
+curl -sS "https://ai.jiasuapi.com/v1/skills/models/<model_name>/pricing" -H "Authorization: Bearer $JIASU_API_KEY"
 ```
 
 ## 三层路径说明

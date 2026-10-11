@@ -8,8 +8,8 @@
       "icon": "text:lk888",
       "website": "https://ai.jiasuapi.com/",
       "description": {
-        "en": "lk888 image & video media platform with balance, usage, models & pricing queries. Official site: https://ai.jiasuapi.com/",
-        "zh": "lk888中转平台（图片、视频、余额、消费、模型查询与定价）。官方地址：https://ai.jiasuapi.com/"
+        "en": "lk888 image & video media platform (佳速API). Official site: https://ai.jiasuapi.com/",
+        "zh": "lk888中转平台（图片、视频生成）。官方地址：https://ai.jiasuapi.com/"
       },
       "routes": [
         {
@@ -57,36 +57,6 @@
           "type": "query",
           "render": "taskStatusJsapi",
           "taskIdParam": "task_id"
-        },
-        {
-          "method": "GET",
-          "path": "/lk888api/v1/skills/balance",
-          "type": "proxy",
-          "upstreamPath": "/v1/skills/balance"
-        },
-        {
-          "method": "GET",
-          "path": "/lk888api/v1/skills/usage",
-          "type": "proxy",
-          "upstreamPath": "/v1/skills/usage"
-        },
-        {
-          "method": "GET",
-          "path": "/lk888api/v1/skills/models",
-          "type": "proxy",
-          "upstreamPath": "/v1/skills/models"
-        },
-        {
-          "method": "GET",
-          "path": "/lk888api/v1/skills/models/:model_name",
-          "type": "proxy",
-          "upstreamPath": "/v1/skills/models/:model_name"
-        },
-        {
-          "method": "GET",
-          "path": "/lk888api/v1/skills/models/:model_name/pricing",
-          "type": "proxy",
-          "upstreamPath": "/v1/skills/models/:model_name/pricing"
         }
       ],
       "protocols": [
@@ -140,7 +110,7 @@
         {
           "version": "1.0.2",
           "path": "plugins/tasks/lk888api/1.0.2/plugin.js",
-          "sha256": "1e8330482bdf9f0ce8f2eddbfa73c8ba3a13be4a205b993b341ac400f7989038",
+          "sha256": "b30eaae380a32be6246cf4709ecd70dcdcedcfe1d59f017a328f0ee10559f2db",
           "minApiVersion": 1,
           "kind": "task",
           "baseUrl": "https://ai.jiasuapi.com"
