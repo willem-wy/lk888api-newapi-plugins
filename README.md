@@ -1,15 +1,15 @@
-# 佳速API · NewAPI 任务插件市场源
+# lk888 · NewAPI 任务插件市场源
 
-面向 **其他 NewAPI 实例** 的 GitHub 市场源：安装本仓库中的 `jiasuapi` 任务插件后，可将 [佳速API](https://ai.jiasuapi.com/) 作为图片 / 视频生成上游。
+面向 **其他 NewAPI 实例** 的 GitHub 市场源：安装本仓库中的 `lk888api` 任务插件后，可将 [佳速API](https://ai.jiasuapi.com/) 作为图片 / 视频生成上游。
 
 - 官方地址：https://ai.jiasuapi.com/
-- 插件 key：`jiasuapi`
+- 插件 key：`lk888api`
 - 当前版本：`1.0.2`
-- 描述：佳速API中转平台（图片、视频中转平台）。官方地址：https://ai.jiasuapi.com/
+- 描述：lk888中转平台（图片、视频中转平台）。官方地址：https://ai.jiasuapi.com/
 - 市场源 `index.json`（raw）：
 
 ```text
-https://raw.githubusercontent.com/hyc0122/jiasuapi-newapi-plugins/main/index.json
+https://raw.githubusercontent.com/willem-wy/lk888api-newapi-plugins/main/index.json
 ```
 
 ## 下游安装步骤（简要）
@@ -18,19 +18,19 @@ https://raw.githubusercontent.com/hyc0122/jiasuapi-newapi-plugins/main/index.jso
 
 1. 以管理员登录你的 NewAPI 控制台
 2. 打开 **任务插件 → 市场源**
-3. 新增源，名称任意（如「佳速API」），URL 填上面的 raw `index.json`
-4. 保存后刷新市场列表，应能看到 **佳速API**
+3. 新增源，名称任意（如「lk888」），URL 填上面的 raw `index.json`
+4. 保存后刷新市场列表，应能看到 **lk888**
 
 ### 2. 安装插件
 
-1. 在市场中找到 **佳速API**（`jiasuapi@1.0.2`）
+1. 在市场中找到 **lk888**（`lk888api@1.0.2`）
 2. 安装并启用
-3. 也可手动上传本仓库 `plugins/tasks/jiasuapi/1.0.2/plugin.js`
+3. 也可手动上传本仓库 `plugins/tasks/lk888api/1.0.2/plugin.js`
 
 ### 3. 创建 Task Plugin 渠道
 
 1. 新建渠道，类型选择 **任务插件**（Task Plugin）
-2. **绑定插件**：`jiasuapi`
+2. **绑定插件**：`lk888api`
 3. **Base URL**：`https://ai.jiasuapi.com`（不要末尾斜杠；留空时插件默认也用该地址）
 4. **密钥**：填写佳速API 的 Bearer API Key（`sk-…`）
 5. **模型**：以渠道侧可见模型为准；权威列表见下方「模型列表」
@@ -101,20 +101,20 @@ JIASU_API_KEY=sk-... node scripts/sync-models.mjs --version 1.0.2 \
 | `GET` | `/v1/videos/:task_id` | retrieve → 插件 render；查询佳速 `GET /v1/videos/tasks/:id` |
 | `GET`/`HEAD` | `/v1/videos/:task_id/content` | content → `listArtifacts` / `buildContentRequest`（公开 CDN URL，credentialless） |
 
-### 3) 原生调试路径 `/jiasuapi/...`
+### 3) 原生调试路径 `/lk888api/...`
 
 插件 `meta.routes` 声明，便于直接打插件原生编解码（不经主机 jsapi 封装）：
 
 | 方法 | 路径 | 映射到佳速 |
 | --- | --- | --- |
-| `POST` | `/jiasuapi/v1/videos/generations` | `POST /v1/video/generations` |
-| `POST` | `/jiasuapi/v1/images/create` | `POST /v1/images/create` |
-| `GET` | `/jiasuapi/v1/videos/tasks/:task_id` | `GET /v1/videos/tasks/:task_id` |
-| `GET` | `/jiasuapi/v1/images/tasks/:task_id` | `GET /v1/images/tasks/:task_id` |
+| `POST` | `/lk888api/v1/videos/generations` | `POST /v1/video/generations` |
+| `POST` | `/lk888api/v1/images/create` | `POST /v1/images/create` |
+| `GET` | `/lk888api/v1/videos/tasks/:task_id` | `GET /v1/videos/tasks/:task_id` |
+| `GET` | `/lk888api/v1/images/tasks/:task_id` | `GET /v1/images/tasks/:task_id` |
 
 ## 视频参数映射（调用方 → 佳速）
 
-下游无论走主机 jsapi（`POST /v1/video/generations`）、`openai_video`（`POST /v1/videos`）还是原生 `/jiasuapi/...`，最终都会打到佳速 `POST /v1/video/generations`。下表只列**调用方请求字段**与佳速接受字段的对应关系（与官方公开参数一致）。
+下游无论走主机 jsapi（`POST /v1/video/generations`）、`openai_video`（`POST /v1/videos`）还是原生 `/lk888api/...`，最终都会打到佳速 `POST /v1/video/generations`。下表只列**调用方请求字段**与佳速接受字段的对应关系（与官方公开参数一致）。
 
 ### 必填
 
@@ -197,20 +197,20 @@ README.md
 scripts/sync-models.mjs
 scripts/db-models.snapshot.txt
 scripts/last-sync.json
-plugins/tasks/jiasuapi/1.0.0/plugin.js
-plugins/tasks/jiasuapi/1.0.1/plugin.js
-plugins/tasks/jiasuapi/1.0.2/plugin.js
+plugins/tasks/lk888api/1.0.0/plugin.js
+plugins/tasks/lk888api/1.0.1/plugin.js
+plugins/tasks/lk888api/1.0.2/plugin.js
 ```
 
 ## 本地校验
 
 ```bash
-node --check plugins/tasks/jiasuapi/1.0.2/plugin.js
-sha256sum plugins/tasks/jiasuapi/1.0.2/plugin.js   # 应与 index.json versions[].sha256 一致
+node --check plugins/tasks/lk888api/1.0.2/plugin.js
+sha256sum plugins/tasks/lk888api/1.0.2/plugin.js   # 应与 index.json versions[].sha256 一致
 ```
 
 若本机有 NewAPI 源码：
 
 ```bash
-go run . plugin lint /path/to/plugins/tasks/jiasuapi/1.0.2/plugin.js
+go run . plugin lint /path/to/plugins/tasks/lk888api/1.0.2/plugin.js
 ```

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Sync model IDs into plugins/tasks/jiasuapi/<ver>/plugin.js and index.json.
+ * Sync model IDs into plugins/tasks/lk888api/<ver>/plugin.js and index.json.
  *
  * Sources (UNION):
  *   1. GET {BASE}/v1/models  (Authorization: Bearer $JIASU_API_KEY when set)
@@ -300,8 +300,8 @@ function replaceProtocolModels(src, videoIds) {
 function replaceRouteModels(src, action, ids) {
   const re =
     action === "video"
-      ? /(path: "\/jiasuapi\/v1\/videos\/generations",[\s\S]*?models: )(\[[\s\S]*?\])(,\s*\},)/
-      : /(path: "\/jiasuapi\/v1\/images\/create",[\s\S]*?models: )(\[[\s\S]*?\])(,\s*\},)/;
+      ? /(path: "\/lk888api\/v1\/videos\/generations",[\s\S]*?models: )(\[[\s\S]*?\])(,\s*\},)/
+      : /(path: "\/lk888api\/v1\/images\/create",[\s\S]*?models: )(\[[\s\S]*?\])(,\s*\},)/;
   if (!re.test(src)) throw new Error("route models block not found for " + action);
   return src.replace(re, (_, a, _old, c) => a + jsStringArray(ids, 8) + c);
 }
@@ -331,15 +331,15 @@ function updatePluginJs(pluginPath, groups) {
 
 function updateIndexJson(indexPath, version, groups, pluginRelPath, sha256) {
   const index = JSON.parse(fs.readFileSync(indexPath, "utf8"));
-  const plugin = (index.plugins || []).find((p) => p.key === "jiasuapi");
-  if (!plugin) throw new Error("jiasuapi entry missing in index.json");
+  const plugin = (index.plugins || []).find((p) => p.key === "lk888api");
+  if (!plugin) throw new Error("lk888api entry missing in index.json");
 
   plugin.models = groups.meta.slice();
   plugin.latest = version;
 
   for (const route of plugin.routes || []) {
-    if (route.path === "/jiasuapi/v1/videos/generations") route.models = groups.video.slice();
-    if (route.path === "/jiasuapi/v1/images/create") route.models = groups.image.slice();
+    if (route.path === "/lk888api/v1/videos/generations") route.models = groups.video.slice();
+    if (route.path === "/lk888api/v1/images/create") route.models = groups.image.slice();
   }
   for (const proto of plugin.protocols || []) {
     if (proto.name === "openai_video") proto.models = groups.video.slice();
@@ -439,7 +439,7 @@ Env:
     console.log("[sync-models] unknown (meta only):", groups.unknown.join(", "));
   }
 
-  const pluginRel = `plugins/tasks/jiasuapi/${args.version}/plugin.js`;
+  const pluginRel = `plugins/tasks/lk888api/${args.version}/plugin.js`;
   const pluginPath = path.join(ROOT, pluginRel);
   if (!fs.existsSync(pluginPath)) {
     console.error("[sync-models] missing plugin:", pluginRel);

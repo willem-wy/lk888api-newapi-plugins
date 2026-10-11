@@ -1,26 +1,32 @@
 /**
- * 佳速API — NewAPI Task Plugin (market install for other NewAPI instances).
+ * lk888 — NewAPI Task Plugin (market install for other NewAPI instances).
  * Official site: https://ai.jiasuapi.com/
  *
  * Calls public endpoints only:
  *   POST /v1/video/generations  +  GET /v1/videos/tasks/:id
  *   POST /v1/images/create      +  GET /v1/images/tasks/:id
+ *   GET  /v1/skills/balance      (proxy — balance query)
+ *   GET  /v1/skills/usage        (proxy — usage query)
+ *   GET  /v1/skills/models       (proxy — model list)
+ *   GET  /v1/skills/models/:name (proxy — model detail)
+ *   GET  /v1/skills/models/:name/pricing (proxy — model pricing)
  * Base URL and API key come from the Task Plugin channel (ctx.baseUrl / ctx.apiKey).
  */
 export const meta = {
   apiVersion: 1,
-  key: "jiasuapi",
-  name: "佳速API",
-  icon: "text:佳速",
+  key: "lk888api",
+  name: "lk888",
+  icon: "text:lk888",
   description: {
-    en: "JiasuAPI image & video media platform. Official site: https://ai.jiasuapi.com/",
-    zh: "佳速API中转平台（图片、视频中转平台）。官方地址：https://ai.jiasuapi.com/",
+    en: "lk888 image & video media platform with balance, usage, models & pricing queries. Official site: https://ai.jiasuapi.com/",
+    zh: "lk888中转平台（图片、视频、余额、消费、模型查询与定价）。官方地址：https://ai.jiasuapi.com/",
   },
-  version: "1.0.1",
-  author: { name: "佳速API", url: "https://ai.jiasuapi.com/" },
+  version: "1.0.2",
+  author: { name: "lk888", url: "https://ai.jiasuapi.com/" },
   models: [
     "gpt-image-2.5-1k",
     "gpt-image-2.5-sunburst-1k",
+    "jimeng-5.0",
     "sd-2.0-720",
     "sd-2.0-720-fast",
     "sd-2.0-933-720-fast-原生真人",
@@ -59,7 +65,7 @@ export const meta = {
   routes: [
     {
       method: "POST",
-      path: "/jiasuapi/v1/videos/generations",
+      path: "/lk888api/v1/videos/generations",
       type: "submit",
       action: "video",
       decode: "decodeVideoSubmit",
@@ -78,7 +84,7 @@ export const meta = {
     },
     {
       method: "POST",
-      path: "/jiasuapi/v1/images/create",
+      path: "/lk888api/v1/images/create",
       type: "submit",
       action: "image",
       decode: "decodeImageSubmit",
@@ -86,19 +92,50 @@ export const meta = {
       models: [
         "gpt-image-2.5-1k",
         "gpt-image-2.5-sunburst-1k",
+        "jimeng-5.0",
       ],
     },
     {
       method: "GET",
-      path: "/jiasuapi/v1/videos/tasks/:task_id",
+      path: "/lk888api/v1/videos/tasks/:task_id",
       type: "query",
       render: "taskStatusJsapi",
     },
     {
       method: "GET",
-      path: "/jiasuapi/v1/images/tasks/:task_id",
+      path: "/lk888api/v1/images/tasks/:task_id",
       type: "query",
       render: "taskStatusJsapi",
+    },
+    {
+      method: "GET",
+      path: "/lk888api/v1/skills/balance",
+      type: "proxy",
+      upstreamPath: "/v1/skills/balance",
+    },
+    {
+      method: "GET",
+      path: "/lk888api/v1/skills/usage",
+      type: "proxy",
+      upstreamPath: "/v1/skills/usage",
+    },
+    {
+      method: "GET",
+      path: "/lk888api/v1/skills/models",
+      type: "proxy",
+      upstreamPath: "/v1/skills/models",
+    },
+    {
+      method: "GET",
+      path: "/lk888api/v1/skills/models/:model_name",
+      type: "proxy",
+      upstreamPath: "/v1/skills/models/:model_name",
+    },
+    {
+      method: "GET",
+      path: "/lk888api/v1/skills/models/:model_name/pricing",
+      type: "proxy",
+      upstreamPath: "/v1/skills/models/:model_name/pricing",
     },
   ],
 };
@@ -120,6 +157,7 @@ const VIDEO_MODELS = {
 const IMAGE_MODELS = {
   "gpt-image-2.5-1k": true,
   "gpt-image-2.5-sunburst-1k": true,
+  "jimeng-5.0": true,
 };
 
 const QUALITIES = { auto: true, low: true, medium: true, high: true };
@@ -520,6 +558,30 @@ export function buildQueryRequest(ctx) {
     method: "GET",
     headers: authHeaders(ctx.apiKey),
   };
+}
+
+export function buildProxyRequest(ctx) {
+  const base = channelBaseUrl(ctx);
+  const route = ctx.route || {};
+  let upstreamPath = route.upstreamPath || "";
+  const params = ctx.params || {};
+  for (const key of Object.keys(params)) {
+    upstreamPath = upstreamPath.replace(":" + key, encodeURIComponent(params[key]));
+  }
+  const query = ctx.query || {};
+  const qs = Object.keys(query)
+    .filter(function (k) { return query[k] !== undefined && query[k] !== null && query[k] !== ""; })
+    .map(function (k) { return encodeURIComponent(k) + "=" + encodeURIComponent(query[k]); })
+    .join("&");
+  return {
+    url: base + upstreamPath + (qs ? "?" + qs : ""),
+    method: "GET",
+    headers: authHeaders(ctx.apiKey),
+  };
+}
+
+export function parseProxyResponse(_ctx, resp) {
+  return resp.body;
 }
 
 /** Unwrap TaskDto {code,data} or flat OpenAI-style poll payloads. */

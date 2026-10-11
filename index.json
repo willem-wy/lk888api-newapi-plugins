@@ -1,20 +1,20 @@
 {
   "indexVersion": 1,
-  "name": "佳速API Plugins",
+  "name": "lk888 Plugins",
   "plugins": [
     {
-      "key": "jiasuapi",
-      "name": "佳速API",
-      "icon": "text:佳速",
+      "key": "lk888api",
+      "name": "lk888",
+      "icon": "text:lk888",
       "website": "https://ai.jiasuapi.com/",
       "description": {
-        "en": "JiasuAPI image & video media platform. Official site: https://ai.jiasuapi.com/",
-        "zh": "佳速API中转平台（图片、视频中转平台）。官方地址：https://ai.jiasuapi.com/"
+        "en": "lk888 image & video media platform with balance, usage, models & pricing queries. Official site: https://ai.jiasuapi.com/",
+        "zh": "lk888中转平台（图片、视频、余额、消费、模型查询与定价）。官方地址：https://ai.jiasuapi.com/"
       },
       "routes": [
         {
           "method": "POST",
-          "path": "/jiasuapi/v1/videos/generations",
+          "path": "/lk888api/v1/videos/generations",
           "type": "submit",
           "action": "video",
           "decode": "decodeVideoSubmit",
@@ -33,7 +33,7 @@
         },
         {
           "method": "POST",
-          "path": "/jiasuapi/v1/images/create",
+          "path": "/lk888api/v1/images/create",
           "type": "submit",
           "action": "image",
           "decode": "decodeImageSubmit",
@@ -46,17 +46,47 @@
         },
         {
           "method": "GET",
-          "path": "/jiasuapi/v1/videos/tasks/:task_id",
+          "path": "/lk888api/v1/videos/tasks/:task_id",
           "type": "query",
           "render": "taskStatusJsapi",
           "taskIdParam": "task_id"
         },
         {
           "method": "GET",
-          "path": "/jiasuapi/v1/images/tasks/:task_id",
+          "path": "/lk888api/v1/images/tasks/:task_id",
           "type": "query",
           "render": "taskStatusJsapi",
           "taskIdParam": "task_id"
+        },
+        {
+          "method": "GET",
+          "path": "/lk888api/v1/skills/balance",
+          "type": "proxy",
+          "upstreamPath": "/v1/skills/balance"
+        },
+        {
+          "method": "GET",
+          "path": "/lk888api/v1/skills/usage",
+          "type": "proxy",
+          "upstreamPath": "/v1/skills/usage"
+        },
+        {
+          "method": "GET",
+          "path": "/lk888api/v1/skills/models",
+          "type": "proxy",
+          "upstreamPath": "/v1/skills/models"
+        },
+        {
+          "method": "GET",
+          "path": "/lk888api/v1/skills/models/:model_name",
+          "type": "proxy",
+          "upstreamPath": "/v1/skills/models/:model_name"
+        },
+        {
+          "method": "GET",
+          "path": "/lk888api/v1/skills/models/:model_name/pricing",
+          "type": "proxy",
+          "upstreamPath": "/v1/skills/models/:model_name/pricing"
         }
       ],
       "protocols": [
@@ -93,24 +123,24 @@
       "versions": [
         {
           "version": "1.0.0",
-          "path": "plugins/tasks/jiasuapi/1.0.0/plugin.js",
-          "sha256": "505fb0366f9ff7c9d7aca33fe79aa5e9621e9f4d9f988fc5edbd62435b53ec9a",
+          "path": "plugins/tasks/lk888api/1.0.0/plugin.js",
+          "sha256": "edafb875d1feaff3f979e5b0f48a7d8c9884ccb9189d3a92c4d78062c406cf64",
           "minApiVersion": 1,
           "kind": "task",
           "baseUrl": "https://ai.jiasuapi.com"
         },
         {
           "version": "1.0.1",
-          "path": "plugins/tasks/jiasuapi/1.0.1/plugin.js",
-          "sha256": "2d788b27451975f3a1a91c5bfd88039e492e7bf81bc6996f52e154400c9e54cc",
+          "path": "plugins/tasks/lk888api/1.0.1/plugin.js",
+          "sha256": "e012c150d53d8980bd08804dea1ce8485a9c118224977b2b908ec50d6a432d47",
           "minApiVersion": 1,
           "kind": "task",
           "baseUrl": "https://ai.jiasuapi.com"
         },
         {
           "version": "1.0.2",
-          "path": "plugins/tasks/jiasuapi/1.0.2/plugin.js",
-          "sha256": "55e2eb3bae30d52bff9f9632ec5c366d7974de683874bad334232625f4da413d",
+          "path": "plugins/tasks/lk888api/1.0.2/plugin.js",
+          "sha256": "1e8330482bdf9f0ce8f2eddbfa73c8ba3a13be4a205b993b341ac400f7989038",
           "minApiVersion": 1,
           "kind": "task",
           "baseUrl": "https://ai.jiasuapi.com"

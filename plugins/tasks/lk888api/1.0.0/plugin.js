@@ -1,5 +1,5 @@
 /**
- * 佳速API — NewAPI Task Plugin (market install for other NewAPI instances).
+ * lk888 — NewAPI Task Plugin (market install for other NewAPI instances).
  * Official site: https://ai.jiasuapi.com/
  *
  * Calls public endpoints only:
@@ -9,35 +9,32 @@
  */
 export const meta = {
   apiVersion: 1,
-  key: "jiasuapi",
-  name: "佳速API",
-  icon: "text:佳速",
+  key: "lk888api",
+  name: "lk888",
+  icon: "text:lk888",
   description: {
-    en: "JiasuAPI image & video media platform. Official site: https://ai.jiasuapi.com/",
-    zh: "佳速API中转平台（图片、视频中转平台）。官方地址：https://ai.jiasuapi.com/",
+    en: "lk888 image & video media platform. Official site: https://ai.jiasuapi.com/",
+    zh: "lk888中转平台（图片、视频中转平台）。官方地址：https://ai.jiasuapi.com/",
   },
-  version: "1.0.2",
-  author: { name: "佳速API", url: "https://ai.jiasuapi.com/" },
+  version: "1.0.0",
+  author: { name: "lk888", url: "https://ai.jiasuapi.com/" },
   models: [
-    "gpt-image-2.5-1k",
-    "gpt-image-2.5-sunburst-1k",
-    "jimeng-5.0",
-    "sd-2.0-720",
-    "sd-2.0-720-fast",
-    "sd-2.0-933-720-fast-原生真人",
-    "sd-2.0-933-720-满血原生真人",
     "seedance-2.0-900",
     "seedance-2.0-933",
-    "seedance-2.5-101010",
-    "seedance-2.5-301010",
     "seedance-2.5-900",
+    "seedance-2.5-101010",
+    "seedance-2.5-303030",
+    "sd-2.0-as",
+    "sd-2.0-js",
+    "sd-2.5-js",
+    "jimeng-5.0",
+    "k1-gpt-image-2.5",
+    "gpt-image-2.5--sunburst-1k",
   ],
   fetchMode: "per_task",
   allowedHosts: [
     "ai.jiasuapi.com",
-    "ai1.jiasuapi.com",
     "api.jiasuapi.com",
-    "relay.jiasuapi.com",
     "m.jiasuapi.com",
     "media.jiasuapi.com",
   ],
@@ -45,60 +42,54 @@ export const meta = {
     {
       name: "openai_video",
       models: [
-        "sd-2.0-720",
-        "sd-2.0-720-fast",
-        "sd-2.0-933-720-fast-原生真人",
-        "sd-2.0-933-720-满血原生真人",
         "seedance-2.0-900",
         "seedance-2.0-933",
-        "seedance-2.5-101010",
-        "seedance-2.5-301010",
         "seedance-2.5-900",
+        "seedance-2.5-101010",
+        "seedance-2.5-303030",
+        "sd-2.0-as",
+        "sd-2.0-js",
+        "sd-2.5-js",
       ],
     },
   ],
   routes: [
     {
       method: "POST",
-      path: "/jiasuapi/v1/videos/generations",
+      path: "/lk888api/v1/videos/generations",
       type: "submit",
       action: "video",
       decode: "decodeVideoSubmit",
       render: "taskCreatedJsapi",
       models: [
-        "sd-2.0-720",
-        "sd-2.0-720-fast",
-        "sd-2.0-933-720-fast-原生真人",
-        "sd-2.0-933-720-满血原生真人",
         "seedance-2.0-900",
         "seedance-2.0-933",
-        "seedance-2.5-101010",
-        "seedance-2.5-301010",
         "seedance-2.5-900",
+        "seedance-2.5-101010",
+        "seedance-2.5-303030",
+        "sd-2.0-as",
+        "sd-2.0-js",
+        "sd-2.5-js",
       ],
     },
     {
       method: "POST",
-      path: "/jiasuapi/v1/images/create",
+      path: "/lk888api/v1/images/create",
       type: "submit",
       action: "image",
       decode: "decodeImageSubmit",
       render: "taskCreatedJsapi",
-      models: [
-        "gpt-image-2.5-1k",
-        "gpt-image-2.5-sunburst-1k",
-        "jimeng-5.0",
-      ],
+      models: ["jimeng-5.0", "k1-gpt-image-2.5", "gpt-image-2.5--sunburst-1k"],
     },
     {
       method: "GET",
-      path: "/jiasuapi/v1/videos/tasks/:task_id",
+      path: "/lk888api/v1/videos/tasks/:task_id",
       type: "query",
       render: "taskStatusJsapi",
     },
     {
       method: "GET",
-      path: "/jiasuapi/v1/images/tasks/:task_id",
+      path: "/lk888api/v1/images/tasks/:task_id",
       type: "query",
       render: "taskStatusJsapi",
     },
@@ -108,21 +99,20 @@ export const meta = {
 const DEFAULT_BASE_URL = "https://ai.jiasuapi.com";
 
 const VIDEO_MODELS = {
-  "sd-2.0-720": true,
-  "sd-2.0-720-fast": true,
-  "sd-2.0-933-720-fast-原生真人": true,
-  "sd-2.0-933-720-满血原生真人": true,
   "seedance-2.0-900": true,
   "seedance-2.0-933": true,
-  "seedance-2.5-101010": true,
-  "seedance-2.5-301010": true,
   "seedance-2.5-900": true,
+  "seedance-2.5-101010": true,
+  "seedance-2.5-303030": true,
+  "sd-2.0-as": true,
+  "sd-2.0-js": true,
+  "sd-2.5-js": true,
 };
 
 const IMAGE_MODELS = {
-  "gpt-image-2.5-1k": true,
-  "gpt-image-2.5-sunburst-1k": true,
   "jimeng-5.0": true,
+  "k1-gpt-image-2.5": true,
+  "gpt-image-2.5--sunburst-1k": true,
 };
 
 const QUALITIES = { auto: true, low: true, medium: true, high: true };
