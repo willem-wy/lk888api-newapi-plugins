@@ -4,7 +4,7 @@
 
 - 官方地址：https://ai.jiasuapi.com/
 - 插件 key：`lk888api`
-- 当前版本：`1.0.4`
+- 当前版本：`1.0.5`
 - 描述：lk888中转平台（图片、视频生成）。官方地址：https://ai.jiasuapi.com/
 - 市场源 `index.json`（raw）：
 
@@ -23,9 +23,9 @@ https://raw.githubusercontent.com/willem-wy/lk888api-newapi-plugins/main/index.j
 
 ### 2. 安装插件
 
-1. 在市场中找到 **lk888**（`lk888api@1.0.4`）
+1. 在市场中找到 **lk888**（`lk888api@1.0.5`）
 2. 安装并启用
-3. 也可手动上传本仓库 `plugins/tasks/lk888api/1.0.4/plugin.js`
+3. 也可手动上传本仓库 `plugins/tasks/lk888api/1.0.5/plugin.js`
 
 ### 3. 创建 Task Plugin 渠道
 
@@ -70,7 +70,7 @@ curl -sS "https://ai.jiasuapi.com/v1/models" \
 #
 # --extra-models-file：平台目录快照（一行一个 model_name，或 name|endpoints|tags）
 # --include-pricing：额外 UNION 公开 /api/pricing
-JIASU_API_KEY=sk-... node scripts/sync-models.mjs --version 1.0.4 \
+JIASU_API_KEY=sk-... node scripts/sync-models.mjs --version 1.0.5 \
   --extra-models-file scripts/db-models.snapshot.txt \
   --include-pricing
 ```
@@ -214,18 +214,18 @@ scripts/db-models.snapshot.txt
 scripts/last-sync.json
 plugins/tasks/lk888api/1.0.0/plugin.js
 plugins/tasks/lk888api/1.0.1/plugin.js
-plugins/tasks/lk888api/1.0.4/plugin.js
+plugins/tasks/lk888api/1.0.5/plugin.js
 ```
 
 ## 本地校验
 
 ```bash
-node --check plugins/tasks/lk888api/1.0.4/plugin.js
-sha256sum plugins/tasks/lk888api/1.0.4/plugin.js   # 应与 index.json versions[].sha256 一致
+node --check plugins/tasks/lk888api/1.0.5/plugin.js
+sha256sum plugins/tasks/lk888api/1.0.5/plugin.js   # 应与 index.json versions[].sha256 一致
 ```
 
 若本机有 NewAPI 源码：
 
 ```bash
-go run . plugin lint /path/to/plugins/tasks/lk888api/1.0.4/plugin.js
+go run . plugin lint /path/to/plugins/tasks/lk888api/1.0.5/plugin.js
 ```

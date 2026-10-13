@@ -190,7 +190,7 @@
         "lk@seedance2.5-全参真人",
         "lk@wan3"
       ],
-      "latest": "1.0.4",
+      "latest": "1.0.5",
       "versions": [
         {
           "version": "1.0.0",
@@ -228,6 +228,14 @@
           "version": "1.0.4",
           "path": "plugins/tasks/lk888api/1.0.4/plugin.js",
           "sha256": "13ec3404a3ace3c0a1426c8c11f6d1c40905639effc5ab2d7c0533aea3835569",
+          "minApiVersion": 1,
+          "kind": "task",
+          "baseUrl": "https://ai.jiasuapi.com"
+        },
+        {
+          "version": "1.0.5",
+          "path": "plugins/tasks/lk888api/1.0.5/plugin.js",
+          "sha256": "2c993150eb942bb567ee3b7c4caafc877cdb54eca76d20999b255aa347af9e65",
           "minApiVersion": 1,
           "kind": "task",
           "baseUrl": "https://ai.jiasuapi.com"
