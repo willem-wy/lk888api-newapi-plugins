@@ -26,7 +26,7 @@
             "dola-sd-2.5",
             "grok-1.5",
             "minimanx-h3-zm",
-            "minimax-h3",
+            "lk@minimax-h3",
             "MiniMax-H3-jx",
             "ov-seedance-2.5-480p-nv",
             "ov-seedance-2.5-720p-nv",
@@ -105,7 +105,7 @@
             "dola-sd-2.5",
             "grok-1.5",
             "minimanx-h3-zm",
-            "minimax-h3",
+            "lk@minimax-h3",
             "MiniMax-H3-jx",
             "ov-seedance-2.5-480p-nv",
             "ov-seedance-2.5-720p-nv",
@@ -157,7 +157,7 @@
         "grok-1.5",
         "jimeng-5.0",
         "minimanx-h3-zm",
-        "minimax-h3",
+        "lk@minimax-h3",
         "MiniMax-H3-jx",
         "ov-seedance-2.5-480p-nv",
         "ov-seedance-2.5-720p-nv",
@@ -190,7 +190,7 @@
         "seedance2.5-全参真人",
         "wan3"
       ],
-      "latest": "1.0.3",
+      "latest": "1.0.4",
       "versions": [
         {
           "version": "1.0.0",
@@ -220,6 +220,14 @@
           "version": "1.0.3",
           "path": "plugins/tasks/lk888api/1.0.3/plugin.js",
           "sha256": "98a509ba9a88163877743cede18c26fa61c4c2eed8bc42bc4eb6e951d51f869a",
+          "minApiVersion": 1,
+          "kind": "task",
+          "baseUrl": "https://ai.jiasuapi.com"
+        },
+        {
+          "version": "1.0.4",
+          "path": "plugins/tasks/lk888api/1.0.4/plugin.js",
+          "sha256": "7c6231180eb8b7ce3810838761db7f1422e8a9f0c9306f22da9b46d2642d4237",
           "minApiVersion": 1,
           "kind": "task",
           "baseUrl": "https://ai.jiasuapi.com"
