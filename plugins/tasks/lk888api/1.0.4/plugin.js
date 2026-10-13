@@ -14,15 +14,15 @@
  */
 export const meta = {
   apiVersion: 1,
-  key: "lk@lk888api",
-  name: "lk@lk888",
+  key: "lk888api",
+  name: "lk888",
   icon: "text:lk888",
   description: {
     en: "lk888 image & video media platform (佳速API). Official site: https://ai.jiasuapi.com/",
     zh: "lk888中转平台（图片、视频生成）。官方地址：https://ai.jiasuapi.com/",
   },
-  version: "lk@1.0.4",
-  author: { name: "lk@lk888", url: "https://ai.jiasuapi.com/" },
+  version: "1.0.4",
+  author: { name: "lk888", url: "https://ai.jiasuapi.com/" },
   models: [
     "lk@AIGV-WAN3-1080P",
     "lk@AIGV-WAN3-720P",
@@ -46,8 +46,8 @@ export const meta = {
     "lk@ov-seedance-2.5-720p-nv",
     "lk@sd-2.0-720",
     "lk@sd-2.0-720-fast",
-    "sd-2.0-933-720-fast-原生真人",
-    "sd-2.0-933-720-满血原生真人",
+    "lk@sd-2.0-933-720-fast-原生真人",
+    "lk@sd-2.0-933-720-满血原生真人",
     "lk@sd-2.0-fast-803-J3",
     "lk@sd-2.0-fast-813-J3",
     "lk@sd-2.0-fast-J4",
@@ -70,17 +70,17 @@ export const meta = {
     "lk@Seedance2.0-933-X-SVIP",
     "lk@seedance2.0-mini-A",
     "lk@seedance2.0-满血",
-    "seedance2.5-全参真人",
+    "lk@seedance2.5-全参真人",
     "lk@wan3",
   ],
   fetchMode: "per_task",
   allowedHosts: [
-    "lk@ai.jiasuapi.com",
-    "lk@ai1.jiasuapi.com",
-    "lk@api.jiasuapi.com",
-    "lk@relay.jiasuapi.com",
-    "lk@m.jiasuapi.com",
-    "lk@media.jiasuapi.com",
+    "ai.jiasuapi.com",
+    "ai1.jiasuapi.com",
+    "api.jiasuapi.com",
+    "relay.jiasuapi.com",
+    "m.jiasuapi.com",
+    "media.jiasuapi.com",
   ],
   protocols: [
     {
@@ -98,8 +98,8 @@ export const meta = {
         "lk@ov-seedance-2.5-720p-nv",
         "lk@sd-2.0-720",
         "lk@sd-2.0-720-fast",
-        "sd-2.0-933-720-fast-原生真人",
-        "sd-2.0-933-720-满血原生真人",
+        "lk@sd-2.0-933-720-fast-原生真人",
+        "lk@sd-2.0-933-720-满血原生真人",
         "lk@sd-2.0-fast-803-J3",
         "lk@sd-2.0-fast-813-J3",
         "lk@sd-2.0-fast-J4",
@@ -122,7 +122,7 @@ export const meta = {
         "lk@Seedance2.0-933-X-SVIP",
         "lk@seedance2.0-mini-A",
         "lk@seedance2.0-满血",
-        "seedance2.5-全参真人",
+        "lk@seedance2.5-全参真人",
         "lk@wan3",
       ],
     },
@@ -148,8 +148,8 @@ export const meta = {
         "lk@ov-seedance-2.5-720p-nv",
         "lk@sd-2.0-720",
         "lk@sd-2.0-720-fast",
-        "sd-2.0-933-720-fast-原生真人",
-        "sd-2.0-933-720-满血原生真人",
+        "lk@sd-2.0-933-720-fast-原生真人",
+        "lk@sd-2.0-933-720-满血原生真人",
         "lk@sd-2.0-fast-803-J3",
         "lk@sd-2.0-fast-813-J3",
         "lk@sd-2.0-fast-J4",
@@ -172,7 +172,7 @@ export const meta = {
         "lk@Seedance2.0-933-X-SVIP",
         "lk@seedance2.0-mini-A",
         "lk@seedance2.0-满血",
-        "seedance2.5-全参真人",
+        "lk@seedance2.5-全参真人",
         "lk@wan3",
       ],
     },
@@ -226,8 +226,8 @@ const VIDEO_MODELS = {
   "lk@ov-seedance-2.5-720p-nv": true,
   "lk@sd-2.0-720": true,
   "lk@sd-2.0-720-fast": true,
-  "sd-2.0-933-720-fast-原生真人": true,
-  "sd-2.0-933-720-满血原生真人": true,
+  "lk@sd-2.0-933-720-fast-原生真人": true,
+  "lk@sd-2.0-933-720-满血原生真人": true,
   "lk@sd-2.0-fast-803-J3": true,
   "lk@sd-2.0-fast-813-J3": true,
   "lk@sd-2.0-fast-J4": true,
@@ -250,7 +250,7 @@ const VIDEO_MODELS = {
   "lk@Seedance2.0-933-X-SVIP": true,
   "lk@seedance2.0-mini-A": true,
   "lk@seedance2.0-满血": true,
-  "seedance2.5-全参真人": true,
+  "lk@seedance2.5-全参真人": true,
   "lk@wan3": true,
 };
 
@@ -291,7 +291,7 @@ function authorizationHeader(apiKey) {
 
 function jsonHeaders(apiKey) {
   return {
-    "lk@Content-Type": "application/json",
+    "Content-Type": "application/json",
     Accept: "application/json",
     Authorization: authorizationHeader(apiKey),
   };
@@ -327,9 +327,9 @@ function inferAction(model, action) {
 }
 
 function decodeJsonObject(ctx) {
-  if (!ctx.body || ctx.body.kind !== "lk@json") throw new Error("JSON body required");
+  if (!ctx.body || ctx.body.kind !== "json") throw new Error("JSON body required");
   const body = ctx.body.value;
-  if (!body || typeof body !== "lk@object" || Array.isArray(body)) {
+  if (!body || typeof body !== "object" || Array.isArray(body)) {
     throw new Error("request body must be an object");
   }
   return body;
@@ -341,7 +341,7 @@ function clientPrompt(req) {
 }
 
 function pickRequestDuration(req) {
-  if (!req || typeof req !== "lk@object") return undefined;
+  if (!req || typeof req !== "object") return undefined;
   const raw =
     req.duration !== undefined && req.duration !== null && req.duration !== ""
       ? req.duration
@@ -361,7 +361,7 @@ function outboundQuality(req) {
 }
 
 function mediaUrl(value) {
-  if (value && typeof value === "lk@object" && !Array.isArray(value)) {
+  if (value && typeof value === "object" && !Array.isArray(value)) {
     if (value.__fileRef) return null;
     return trimmed(value.url) || trimmed(value.uri);
   }
@@ -369,7 +369,7 @@ function mediaUrl(value) {
 }
 
 function normalizeImageType(value) {
-  if (!value || typeof value !== "lk@object" || Array.isArray(value)) return "";
+  if (!value || typeof value !== "object" || Array.isArray(value)) return "";
   return trimmed(value.type).toLowerCase();
 }
 
@@ -381,7 +381,7 @@ function normalizeMediaList(values) {
       value.forEach(walk);
       return;
     }
-    if (value && typeof value === "lk@object" && !Array.isArray(value)) {
+    if (value && typeof value === "object" && !Array.isArray(value)) {
       if (value.__fileRef) {
         out.push(value);
         return;
@@ -411,7 +411,7 @@ function normalizeMaterials(values) {
       value.forEach(walk);
       return;
     }
-    if (!value || typeof value !== "lk@object" || Array.isArray(value)) return;
+    if (!value || typeof value !== "object" || Array.isArray(value)) return;
     const url = mediaUrl(value);
     if (!url && !value.__fileRef) return;
     const item = {};
@@ -428,18 +428,19 @@ function normalizeMaterials(values) {
 }
 
 function normalizeFace(value) {
-  if (!value || typeof value !== "lk@object" || Array.isArray(value)) return null;
+  if (!value || typeof value !== "object" || Array.isArray(value)) return null;
   const out = {};
   if (value.enabled !== undefined) out.enabled = Boolean(value.enabled);
   const mode = trimmed(value.mode).toLowerCase();
-  if (mode === "lk@light" || mode === "lk@heavy") out.mode = mode;
+  if (mode === "light" || mode === "heavy") out.mode = mode;
   return Object.keys(out).length ? out : null;
 }
 
 function decodeNativeVideoSubmit(ctx) {
   const body = decodeJsonObject(ctx);
-  const model = trimmed(body.model);
+  let model = trimmed(body.model);
   if (!model) throw new Error("model is required");
+  if (model.startsWith("lk@")) model = model.slice(3);
   const prompt = clientPrompt(body);
   if (!prompt) throw new Error("prompt is required");
   const requestBody = Object.assign({}, body, { model: model, prompt: prompt });
@@ -450,8 +451,9 @@ function decodeNativeVideoSubmit(ctx) {
 
 function decodeNativeImageSubmit(ctx) {
   const body = decodeJsonObject(ctx);
-  const model = trimmed(body.model);
+  let model = trimmed(body.model);
   if (!model) throw new Error("model is required");
+  if (model.startsWith("lk@")) model = model.slice(3);
   const prompt = clientPrompt(body);
   if (!prompt) throw new Error("prompt is required");
   const requestBody = Object.assign({}, body, { model: model, prompt: prompt });
@@ -464,25 +466,25 @@ function taskCreatedJsapi(_ctx, task) {
   return {
     id: task.task_id,
     task_id: task.task_id,
-    status: "lk@queued",
+    status: "queued",
     model: (task.properties && task.properties.origin_model_name) || "",
   };
 }
 
 function taskStatusJsapi(_ctx, task) {
   const statusMap = {
-    NOT_START: "lk@queued",
-    SUBMITTED: "lk@queued",
-    QUEUED: "lk@queued",
-    IN_PROGRESS: "lk@running",
-    SUCCESS: "lk@succeeded",
-    FAILURE: "lk@failed",
+    NOT_START: "queued",
+    SUBMITTED: "queued",
+    QUEUED: "queued",
+    IN_PROGRESS: "running",
+    SUCCESS: "succeeded",
+    FAILURE: "failed",
   };
-  const data = task.data && typeof task.data === "lk@object" ? task.data : {};
+  const data = task.data && typeof task.data === "object" ? task.data : {};
   const out = {
     id: task.task_id,
     task_id: task.task_id,
-    status: statusMap[task.status] || "lk@queued",
+    status: statusMap[task.status] || "queued",
     progress_pct: Number(String(task.progress || "0").replace("%", "")) || 0,
     fail_reason: task.fail_reason || data.fail_reason || "",
   };
@@ -540,7 +542,7 @@ function buildVideoBody(ctx, req) {
     let dup = false;
     for (let i = 0; i < images.length; i++) {
       const item = images[i];
-      const u = typeof item === "lk@string" ? item : item && item.url;
+      const u = typeof item === "string" ? item : item && item.url;
       if (u === singleImage) {
         dup = true;
         break;
@@ -606,7 +608,7 @@ function buildImageBody(ctx, req) {
     let dup = false;
     for (let i = 0; i < images.length; i++) {
       const item = images[i];
-      const u = typeof item === "lk@string" ? item : item && item.url;
+      const u = typeof item === "string" ? item : item && item.url;
       if (u === singleImage) {
         dup = true;
         break;
@@ -648,7 +650,7 @@ export function parseSubmitResponse(ctx, resp) {
   const result = resp.body || {};
   if (result.error) {
     const msg =
-      typeof result.error === "lk@string"
+      typeof result.error === "string"
         ? result.error
         : trimmed(result.error.message) || "submit failed";
     throw new Error(msg);
@@ -671,8 +673,8 @@ export function buildQueryRequest(ctx) {
 
 /** Unwrap TaskDto {code,data} or flat OpenAI-style poll payloads. */
 function unwrapPollBody(body) {
-  if (!body || typeof body !== "lk@object") return {};
-  if (body.data && typeof body.data === "lk@object" && !Array.isArray(body.data)) {
+  if (!body || typeof body !== "object") return {};
+  if (body.data && typeof body.data === "object" && !Array.isArray(body.data)) {
     if (
       body.data.task_id ||
       body.data.status ||
@@ -701,12 +703,12 @@ function collectResultUrls(data) {
     urls.push(url);
   };
 
-  if (!data || typeof data !== "lk@object") return urls;
+  if (!data || typeof data !== "object") return urls;
   push(data.result_urls);
   push(data.result_url);
   push(data.url);
   push(data.video_url);
-  if (data.data && typeof data.data === "lk@object") {
+  if (data.data && typeof data.data === "object") {
     push(data.data.result_urls);
     push(data.data.result_url);
     push(data.data.url);
@@ -716,60 +718,60 @@ function collectResultUrls(data) {
 
 function mapPublicStatus(rawStatus) {
   const raw = trimmed(rawStatus);
-  if (!raw) return { status: "lk@UNKNOWN", reason: "missing task status" };
+  if (!raw) return { status: "UNKNOWN", reason: "missing task status" };
 
   const upper = raw.toUpperCase();
-  if (upper === "NOT_START" || upper === "lk@SUBMITTED") return { status: "lk@SUBMITTED", reason: "" };
-  if (upper === "lk@QUEUED" || upper === "lk@PENDING") return { status: "lk@QUEUED", reason: "" };
-  if (upper === "IN_PROGRESS" || upper === "lk@RUNNING" || upper === "lk@PROCESSING") {
+  if (upper === "NOT_START" || upper === "SUBMITTED") return { status: "SUBMITTED", reason: "" };
+  if (upper === "QUEUED" || upper === "PENDING") return { status: "QUEUED", reason: "" };
+  if (upper === "IN_PROGRESS" || upper === "RUNNING" || upper === "PROCESSING") {
     return { status: "IN_PROGRESS", reason: "" };
   }
-  if (upper === "lk@SUCCESS" || upper === "lk@SUCCEEDED" || upper === "lk@COMPLETED") {
-    return { status: "lk@SUCCESS", reason: "" };
+  if (upper === "SUCCESS" || upper === "SUCCEEDED" || upper === "COMPLETED") {
+    return { status: "SUCCESS", reason: "" };
   }
-  if (upper === "lk@FAILURE" || upper === "lk@FAILED" || upper === "lk@ERROR" || upper === "lk@CANCELLED" || upper === "lk@CANCELED") {
-    return { status: "lk@FAILURE", reason: "" };
+  if (upper === "FAILURE" || upper === "FAILED" || upper === "ERROR" || upper === "CANCELLED" || upper === "CANCELED") {
+    return { status: "FAILURE", reason: "" };
   }
-  if (upper === "lk@EXPIRED") return { status: "lk@FAILURE", reason: "task expired" };
-  if (upper === "lk@UNKNOWN") return { status: "lk@UNKNOWN", reason: "unknown task status" };
+  if (upper === "EXPIRED") return { status: "FAILURE", reason: "task expired" };
+  if (upper === "UNKNOWN") return { status: "UNKNOWN", reason: "unknown task status" };
 
   const lower = raw.toLowerCase();
-  if (lower === "lk@queued" || lower === "lk@pending" || lower === "lk@created") return { status: "lk@QUEUED", reason: "" };
-  if (lower === "in_progress" || lower === "lk@running" || lower === "lk@processing") {
+  if (lower === "queued" || lower === "pending" || lower === "created") return { status: "QUEUED", reason: "" };
+  if (lower === "in_progress" || lower === "running" || lower === "processing") {
     return { status: "IN_PROGRESS", reason: "" };
   }
-  if (lower === "lk@completed" || lower === "lk@succeeded" || lower === "lk@success") {
-    return { status: "lk@SUCCESS", reason: "" };
+  if (lower === "completed" || lower === "succeeded" || lower === "success") {
+    return { status: "SUCCESS", reason: "" };
   }
-  if (lower === "lk@failed" || lower === "lk@failure" || lower === "lk@error") {
-    return { status: "lk@FAILURE", reason: "" };
+  if (lower === "failed" || lower === "failure" || lower === "error") {
+    return { status: "FAILURE", reason: "" };
   }
 
-  return { status: "lk@UNKNOWN", reason: "unknown task status: " + raw };
+  return { status: "UNKNOWN", reason: "unknown task status: " + raw };
 }
 
 export function parseTaskResult(ctx, body) {
-  const root = body && typeof body === "lk@object" ? body : {};
+  const root = body && typeof body === "object" ? body : {};
   if (root.error && !root.status && !root.task_id && !root.id && !root.data) {
     const msg =
-      typeof root.error === "lk@string" ? root.error : trimmed(root.error.message) || "upstream error";
-    return { status: "lk@FAILURE", reason: msg };
+      typeof root.error === "string" ? root.error : trimmed(root.error.message) || "upstream error";
+    return { status: "FAILURE", reason: msg };
   }
 
   const data = unwrapPollBody(root);
   if (data.error && !data.status && !data.task_id && !data.id) {
     const msg =
-      typeof data.error === "lk@string" ? data.error : trimmed(data.error.message) || "upstream error";
-    return { status: "lk@FAILURE", reason: msg };
+      typeof data.error === "string" ? data.error : trimmed(data.error.message) || "upstream error";
+    return { status: "FAILURE", reason: msg };
   }
 
   const mapped = mapPublicStatus(data.status);
-  if (mapped.status === "lk@UNKNOWN") return mapped;
+  if (mapped.status === "UNKNOWN") return mapped;
 
   const result = {
     status: mapped.status,
     reason:
-      mapped.status === "lk@FAILURE"
+      mapped.status === "FAILURE"
         ? mapped.reason ||
           trimmed(data.fail_reason) ||
           trimmed(data.error_msg) ||
@@ -790,7 +792,7 @@ export function parseTaskResult(ctx, body) {
     result.progress = String(Math.min(100, n)) + "%";
   }
 
-  if (mapped.status === "lk@SUCCESS") {
+  if (mapped.status === "SUCCESS") {
     const urls = collectResultUrls(data);
     if (urls.length) result.url = urls[0];
   }
@@ -801,9 +803,9 @@ function artifactData(ctx) {
   const data = (ctx && ctx.data) || {};
   if (
     data.data &&
-    typeof data.data === "lk@object" &&
+    typeof data.data === "object" &&
     data.data.task_id &&
-    Object.prototype.hasOwnProperty.call(data.data, "lk@data")
+    Object.prototype.hasOwnProperty.call(data.data, "data")
   ) {
     return data.data.data || {};
   }
@@ -824,7 +826,7 @@ function artifactIsImage(task, data) {
 }
 
 export function listArtifacts(task) {
-  if (task.status !== "lk@SUCCESS") return [];
+  if (task.status !== "SUCCESS") return [];
   const data = artifactData(task);
   const urls = artifactUrls(task);
   if (!urls.length) return [];
@@ -859,12 +861,12 @@ export function buildContentRequest(ctx) {
 export const protocols = {
   openai_video: {
     decodeRequest: function (ctx) {
-      if (!ctx.body || (ctx.body.kind !== "lk@json" && ctx.body.kind !== "lk@multipart")) {
+      if (!ctx.body || (ctx.body.kind !== "json" && ctx.body.kind !== "multipart")) {
         throw new Error("JSON or multipart body required");
       }
       let req;
       let hasInputReferenceFile = false;
-      if (ctx.body.kind === "lk@json") {
+      if (ctx.body.kind === "json") {
         if (!ctx.body.value || Array.isArray(ctx.body.value)) throw new Error("JSON object required");
         req = Object.assign({}, ctx.body.value);
       } else {
@@ -890,7 +892,7 @@ export const protocols = {
           } catch (e) {
             throw new Error("metadata must be a JSON object string");
           }
-          if (!parsed || typeof parsed !== "lk@object" || Array.isArray(parsed)) {
+          if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
             throw new Error("metadata must be a JSON object string");
           }
           req.metadata = parsed;
@@ -899,9 +901,8 @@ export const protocols = {
         else if (req.duration !== undefined) req.seconds = Number(req.duration);
       }
 
-      let model = ctx.model;
+      const model = ctx.model;
       if (!trimmed(model)) throw new Error("model is required");
-      if (model === "lk@minimax-h3") model = "lk@minimax-h3";
       if (isImageModel(model)) throw new Error("image models must use POST /v1/images/create");
 
       const prompt = clientPrompt(req);
@@ -918,31 +919,31 @@ export const protocols = {
 
       return {
         kind: "submit",
-        model: model,
+        model: ctx.model,
         action: "video",
-        requestBody: Object.assign({}, req, { model: model, prompt: prompt }),
+        requestBody: Object.assign({}, req, { model: ctx.model, prompt: prompt }),
       };
     },
     render: function (_ctx, task) {
       const statusMap = {
-        NOT_START: "lk@queued",
-        SUBMITTED: "lk@queued",
-        QUEUED: "lk@queued",
+        NOT_START: "queued",
+        SUBMITTED: "queued",
+        QUEUED: "queued",
         IN_PROGRESS: "in_progress",
-        SUCCESS: "lk@completed",
-        FAILURE: "lk@failed",
+        SUCCESS: "completed",
+        FAILURE: "failed",
       };
-      const data = task.data && typeof task.data === "lk@object" ? task.data : {};
+      const data = task.data && typeof task.data === "object" ? task.data : {};
       const output = {
         id: task.task_id,
         object: "video",
         model: "",
-        status: statusMap[task.status] || "lk@unknown",
+        status: statusMap[task.status] || "unknown",
         progress: Number(String(task.progress || "0").replace("%", "")),
         created_at: task.created_at || 0,
       };
       if (task.updated_at) output.completed_at = task.updated_at;
-      if (task.status === "lk@FAILURE") {
+      if (task.status === "FAILURE") {
         output.error = { message: task.fail_reason || data.fail_reason || "task failed", code: "" };
       }
       return output;
